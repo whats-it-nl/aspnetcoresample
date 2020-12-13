@@ -2,10 +2,10 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS build
 WORKDIR /source
 
-RUN sudo apt-get update \
-  sudo apt-get install -y apt-transport-https && \
-  sudo apt-get update && \
-  sudo apt-get install -y dotnet-sdk-5.0
+RUN apt-get update \
+  apt-get install -y apt-transport-https && \
+  apt-get update && \
+  apt-get install -y dotnet-sdk-5.0
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
