@@ -1,10 +1,5 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
 # https://hub.docker.com/_/microsoft-dotnet-core
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS build
+mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS build
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
@@ -18,7 +13,7 @@ WORKDIR /source/aspnetapp
 RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim
 WORKDIR /app
 COPY --from=build /app ./
 EXPOSE 80
