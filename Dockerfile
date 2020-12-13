@@ -1,11 +1,6 @@
 # https://hub.docker.com/_/microsoft-dotnet-core
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS build
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS build
 WORKDIR /source
-
-RUN apt-get update \
-  apt-get install -y apt-transport-https && \
-  apt-get update && \
-  apt-get install -y dotnet-sdk-5.0
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
